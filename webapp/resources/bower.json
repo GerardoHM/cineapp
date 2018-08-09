@@ -1,0 +1,23 @@
+{
+  "name": "cineapp",
+  "description": "App My CineSite",
+  "main": "home.jsp",
+  "keywords": [
+    "Cine"
+  ],
+  "authors": [
+    "Gerardo Hernández Moreno"
+  ],
+  "license": "MIT",
+  "homepage": "cineapp/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47"
+  }
+}
