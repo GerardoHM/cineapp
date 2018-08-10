@@ -5,16 +5,26 @@ package applinet.eglobal.app.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="banners")
 public class Banner {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY) // auto_increment MySQL
 	private int id;
-	private String titulo;
-	private Date fecha; // Fecha de Publicacion del Banner
+	private String titulo; // titulo para indicar el atributo title <img src='' title='?' />
+	private Date fecha; // Fecha de Publicacion de la imagen
 	private String archivo; // atributo para guardar el nombre de la imagen
-	private String estatus;
+	private String estatus; // posibles valores: Activo, Inactivo
 	
 	/**
-	 * Constructor de la clase
+	 * Constructor de la clase sin parametros
 	 */
 	public Banner(){		
 		this.fecha = new Date(); // Por default, la fecha del sistema
