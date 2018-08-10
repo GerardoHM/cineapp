@@ -4,7 +4,4 @@ src/main/java/pruebascrudrepo
 src/main/java/pruebasjparepo
 src/main/java/pruebasquery
 src/main/java/pruebasrelaciones
-target/classes/pruebascrudrepo
-target/classes/pruebasjparepo
-target/classes/pruebasquery
-target/classes/pruebasrelaciones
+target/
