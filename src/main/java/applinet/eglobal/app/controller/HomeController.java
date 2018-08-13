@@ -80,7 +80,7 @@ public class HomeController {
 		Date fecha = dateFormat.parse(dateFormat.format(new Date()));
 		List<String> listFechas = Utileria.getNextDays(10);		
 		List<Pelicula> peliculas = servicePeliculas.buscarPorEstatusYHorariosActivos("Activa", fecha);
-		List<Banner> banners = serviceBanners.buscarTodos();
+		List<Banner> banners = serviceBanners.buscarPorEstatus("Activo");
 		List<Noticia> noticias = serviceNoticias.buscarPorEstatusYFecha("Activa", fecha);
 		
 		model.addAttribute("fechas", listFechas);
