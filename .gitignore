@@ -5,3 +5,6 @@ src/main/java/pruebasjparepo
 src/main/java/pruebasquery
 src/main/java/pruebasrelaciones
 target/
+src/main/java/applinet/eglobal/app/service/BannersServiceImpl.java
+src/main/java/applinet/eglobal/app/service/NoticiasServiceImpl.java
+src/main/java/applinet/eglobal/app/service/PeliculasServiceImpl.java
