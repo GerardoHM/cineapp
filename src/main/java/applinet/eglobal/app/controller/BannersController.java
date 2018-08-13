@@ -1,9 +1,11 @@
 package applinet.eglobal.app.controller;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +34,7 @@ import applinet.eglobal.app.service.IBannersService;
 import applinet.eglobal.app.util.Utileria;
 
 @Controller
-@RequestMapping("/banners/")
+@RequestMapping("/banners")
 public class BannersController {
 
 	@Autowired
@@ -43,10 +46,12 @@ public class BannersController {
 	 * @return
 	 */
 	@GetMapping("/index")
-	public String mostrarIndex(Model model) {
+	public String mostrarIndex(Model model, HttpServletRequest request) {
 		
-		List<Banner> listaBanners = serviceBanners.buscarTodos();
-		model.addAttribute("banners", listaBanners);
+		List<Banner> listBanners = serviceBanners.buscarTodos();
+		model.addAttribute("banners", listBanners);
+		String mensaje = request.getParameter("mensaje");
+		model.addAttribute("mensaje", mensaje);
 		
 		return "banners/listBanners";
 	}
@@ -56,7 +61,7 @@ public class BannersController {
 	 * @return
 	 */
 	@GetMapping("/create")
-	public String crear() {
+	public String crear(@ModelAttribute Banner banner) {
 		return "banners/formBanner";		
 	}
 	
@@ -71,22 +76,37 @@ public class BannersController {
 	 */
 	@PostMapping("/save")
 	public String guardar(Banner banner, BindingResult result, RedirectAttributes attributes,
-			@RequestParam("archivoImagen") MultipartFile multipart, HttpServletRequest request) {
+			@RequestParam("archivoImagen") MultipartFile multipart, HttpServletRequest request, Model model) {
+		String pathFinal = "resources/images";
 		
 		if(result.hasErrors()) {
 			System.out.println("Existieron errores.");
-			return "peliculas/formPelicula";
+			System.out.println(result.getFieldErrors());
+			return "banners/formBanner";
 		}
 		
 		if(!multipart.isEmpty()) {
 			String nombreImagen = Utileria.guardarImagen(multipart, request);
 			banner.setArchivo(nombreImagen);
+			File file = new File(pathFinal);
 		}
 		
 		serviceBanners.insertar(banner);
 		attributes.addFlashAttribute("mensaje", "El registro fue guardado con éxito.");
 		
-		return "redirect:/banners/index";
+		List<Banner> listBanners = serviceBanners.buscarTodos();
+		model.addAttribute("banners", listBanners);
+		model.addAttribute("mensaje", "El registro fue guardado con éxito.");
+		
+		return "banners/listBanners";
+	}
+	
+	@GetMapping(value="/edit/{id}")
+	public String editar(@PathVariable("id") int idbanner, Model model) {
+		Optional<Banner> banner = serviceBanners.buscarPorId(idbanner);
+		model.addAttribute("banner", banner);
+		
+		return "banners/formBanner";
 	}
 	
 	/**
@@ -96,15 +116,14 @@ public class BannersController {
 	 * @return
 	 */
 	@GetMapping(value="/delete/{id}", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody String eliminar(@PathVariable("id") int idHorario, RedirectAttributes attributes) {
-		System.out.println("idHorario: " + idHorario);
-		// Primero eliminar la pelicula
-		serviceBanners.eliminar(idHorario);
-		String mensaje = "El banner a sido eliminado.";
+	public @ResponseBody String eliminar(@PathVariable("id") int idbanner, RedirectAttributes attributes) {
+		System.out.println("idbanner: " + idbanner);
+		serviceBanners.eliminar(idbanner);
+		String mensaje = "La imagen del banner a sido eliminada.";
 		
 		HashMap<String, String> list = new HashMap<String,String>();
 		list.put("mensaje", mensaje);
-		list.put("id", Integer.toString(idHorario));
+		list.put("id", Integer.toString(idbanner));
 		System.out.println(list);
 		Gson gson = new Gson(); 
 		
