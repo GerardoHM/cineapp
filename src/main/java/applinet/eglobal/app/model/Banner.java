@@ -24,7 +24,7 @@ public class Banner {
 	private String estatus; // posibles valores: Activo, Inactivo
 	
 	/**
-	 * Constructor de la clase sin parametros
+	 * Constructor de la clase
 	 */
 	public Banner(){		
 		this.fecha = new Date(); // Por default, la fecha del sistema
