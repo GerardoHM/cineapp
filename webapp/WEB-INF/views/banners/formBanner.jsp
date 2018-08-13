@@ -1,4 +1,5 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,44 +41,43 @@
 	      	</div>
 	      </spring:hasBindErrors>
 	
-	      <form action="${urlForm}" method="post" enctype="multipart/form-data">
+	      <form:form action="${urlForm}" method="post" modelAttribute="banner" enctype="multipart/form-data">
             <div class="row">         
                <div class="col-sm-6">
                   <div class="form-group">
-                     <label for="titulo">Titulo</label>             
-                     <input type="text" class="form-control" name="titulo" id="titulo" required="required"/>
+                  	 <form:hidden path="id" id="idbanner"/>
+                     <label for="titulo">Titulo</label>
+                     <form:input type="text" class="form-control" path="titulo" id="titulo" required="required" />
                   </div>
                </div>
 
                <div class="col-sm-4">
                   <div class="form-group">
-                     <label for="imagen">Imagen</label>
-                     <input type="file" id="archivoImagen" name="archivoImagen" required="required" />
+                  	 <label for="imagen">Imagen</label>
+		             <form:hidden path="archivo"/>
+              		 <input type="file" id="archivoImagen" name="archivoImagen" />
                      <p class="help-block">Tamaño recomendado: 1140 x 250 </p>
                   </div> 
                </div> 
 
                <div class="col-sm-2">
                   <div class="form-group">
-                     <label for="estatus">Estatus</label>             
-                     <select id="estatus" name="estatus" class="form-control">
-                        <option value="Activo">Activo</option>
-                        <option value="Inactivo">Inactivo</option>                
-                     </select>  
+                     <label for="estatus" class="control-label">Estatus</label>              
+		             <form:select id="estatus" path="estatus" class="form-control">
+		               <form:option value="Activo">Activo</form:option>
+		               <form:option value="Inactivo">Inactivo</form:option>               
+		             </form:select>
                   </div>
                </div>
             </div>
 
-            <button type="submit" class="btn btn-danger" >Guardar</button>
-         </form> 
-
-         <hr class="featurette-divider">
+            <button type="submit" class="btn btn-primary" >Guardar</button>
+         </form:form> 
 
          <!-- FOOTER -->
-         <footer>        
-            <p class="pull-right"><a href="#">Back to top</a></p>
-            <p>&copy; 2017 My CineSite, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-         </footer>
+         <hr class="featurette-divider">
+
+      	 <jsp:include page="../includes/footer.jsp"></jsp:include>	
 
       </div> <!-- /container -->
 
