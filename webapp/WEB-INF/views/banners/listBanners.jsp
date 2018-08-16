@@ -70,10 +70,10 @@
 							</c:choose>
 						</td>
 						<td>
-							<a href="${urlBanners}/edit/${banner.id}" class="btn btn-success btn-sm" role="button" title="Editar" data-toggle="tooltip" data-placement="left">
+							<a href="${urlBanners}/edit/${banner.id}" class="btn btn-success btn-sm tooltipE" role="button" title="Editar">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</a>							
-							<button class="btn btn-danger btn-sm delete" id="${banner.id}" title="Eliminar" data-toggle="tooltip" data-placement="right">
+							<button class="btn btn-danger btn-sm delete tooltipE" id="${banner.id}" title="Eliminar">
 								<span class="glyphicon glyphicon-trash"></span>
 							</button>
 						</td>
@@ -123,7 +123,7 @@
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="${urlPublic}/js/jquery-3.3.1.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="${urlPublic}/jquery/jquery-ui-1.12.1.custom.base/jquery-ui.js"></script>
 	<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
 	<script src="${urlPublic}/bootstrap/bootstrap-table-master/src/bootstrap-table.js"></script>
 	<!-- put your locale files after bootstrap-table.js -->

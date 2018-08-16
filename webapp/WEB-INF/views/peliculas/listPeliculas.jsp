@@ -76,10 +76,10 @@
 						</td>
 						<td>
 							<a href="${urlEdit}/${pelicula.id}"
-								class="btn btn-success btn-sm" role="button" title="Editar" data-toggle="tooltip" data-placement="left">
+								class="btn btn-success btn-sm tooltipE" role="button" title="Editar" data-placement="left">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</a>
-							<button class="btn btn-danger btn-sm delete" id="${pelicula.id}" title="Eliminar" data-toggle="tooltip" data-placement="right">
+							<button class="btn btn-danger btn-sm delete tooltipE" id="${pelicula.id}" title="Eliminar" data-placement="right">
 								<span class="glyphicon glyphicon-trash"></span>
 							</button>
 						</td>

@@ -2,10 +2,11 @@
  * 
  */
 $( document ).ready(function() {
-	$('[data-toggle="tooltip"]').tooltip();
-	
 	var $table = $("#dataTable");
+	// Para generar los tooltips
+	$table.tooltip({selector: ".tooltipE", placement: "left"});
 	
+	// Mostrar mensaje de confirmación (modal) para eliminar el elemento de la base de datos
 	$("#dataTable").on("click", ".delete", function(e){
         var $id = this.id;
         $("#idFieldDelete").val($id);		
