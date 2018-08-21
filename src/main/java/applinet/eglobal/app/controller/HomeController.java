@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +36,7 @@ public class HomeController {
 	
 	@Autowired
 	private IBannersService serviceBanners;
+	
 	@Autowired
 	private IHorariosService serviceHorarios;
 	
@@ -113,11 +115,34 @@ public class HomeController {
 		return "detalle";
 	}
 	
-	@RequestMapping(value="/acercade", method=RequestMethod.GET)
-	public String goAcercaDe() {
+	/**
+	 * Metodo que muestra la vista de la pagina de Acerca
+	 * @return
+	 */
+	@RequestMapping(value = "/about")
+	public String mostrarAcerca() {			
 		return "acerca";
 	}
 	
+	@GetMapping(value="/formLogin")
+	public String mostrarLogin() {
+		return "formLogin";
+	}
+	
+	@ModelAttribute("noticias")
+	public List<Noticia> getNoticias(){
+		return serviceNoticias.buscarUltimas();
+	}
+	
+	@ModelAttribute("banners")
+	public List<Banner> getBanners(){
+		return serviceBanners.buscarActivos();
+	}
+	
+	/**
+	 * Metodo para personalizar el Data Binding para los atributos de tipo Date
+	 * @param webDataBinder
+	 */
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
