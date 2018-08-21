@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import applinet.eglobal.app.model.Banner;
 import applinet.eglobal.app.model.Noticia;
 import applinet.eglobal.app.repository.NoticiasRepository;
 
@@ -19,6 +18,12 @@ public class NoticiasServiceJPA implements INoticiasService {
 	
 	public NoticiasServiceJPA() {
 		System.out.println("Creando una instancia de la clase NoticiasServiceJPA");
+	}
+	
+	@Override
+	public List<Noticia> buscarUltimas() {
+		List<Noticia> noticias = noticiasRepo.findTop3ByEstatusOrderByIdDesc("Activa");		
+		return noticias;
 	}
 	
 	@Override

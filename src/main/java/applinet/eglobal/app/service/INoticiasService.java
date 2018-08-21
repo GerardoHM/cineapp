@@ -8,6 +8,7 @@ import applinet.eglobal.app.model.Noticia;
 
 public interface INoticiasService {
 	
+	List<Noticia> buscarUltimas();
 	List<Noticia> buscarTodas();
 	void guardar(Noticia noticia);
 	Optional<Noticia> buscarPorId(int idnoticia);
