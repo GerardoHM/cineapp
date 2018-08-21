@@ -9,6 +9,7 @@ public interface IBannersService {
 
 	void insertar(Banner banner); 
 	List<Banner> buscarTodos();
+	List<Banner> buscarActivos();
 	List<Banner> buscarPorEstatus(String estatus);
 	Optional<Banner> buscarPorId(int idbanner);
 	void eliminar(int idbanner);

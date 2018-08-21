@@ -40,4 +40,9 @@ public class BannerServiceJPA implements IBannersService {
 		bannersRepo.deleteById(idbanner);		
 	}
 
+	@Override
+	public List<Banner> buscarActivos() {
+		return bannersRepo.findByEstatusOrderByIdDesc("Activo");
+	}
+
 }
