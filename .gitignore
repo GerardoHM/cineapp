@@ -1,5 +1,6 @@
 # Código gitignore para evitar procesar los directorios de prueba del proyecto
 .settings
+.springBeans
 src/main/java/pruebascrudrepo
 src/main/java/pruebasjparepo
 src/main/java/pruebasquery
