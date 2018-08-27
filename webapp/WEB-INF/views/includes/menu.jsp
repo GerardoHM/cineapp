@@ -27,14 +27,14 @@
             		<li><a href="${urlRoot}formLogin">Login</a></li>  
 		        </sec:authorize>
 		        <sec:authorize access="hasAnyAuthority('EDITOR')">  
-			        <li><a href="${urlRoot}peliculas/indexPaginate?page=0">Peliculas</a></li>
-		            <li><a href="${urlRoot}horarios/indexPaginate?page=0">Horarios</a></li>
+			        <li><a href="${urlRoot}peliculas/index">Peliculas</a></li>
+		            <li><a href="${urlRoot}horarios/index">Horarios</a></li>
 		            <li><a href="${urlRoot}noticias/index">Noticias</a></li>
 		            <li><a href="${urlRoot}admin/logout">Salir</a></li>	
 		        </sec:authorize>
 		        <sec:authorize access="hasAnyAuthority('GERENTE')">  
-			        <li><a href="${urlRoot}peliculas/indexPaginate?page=0">Peliculas</a></li>
-		            <li><a href="${urlRoot}horarios/indexPaginate?page=0">Horarios</a></li>
+			        <li><a href="${urlRoot}peliculas/index">Peliculas</a></li>
+		            <li><a href="${urlRoot}horarios/index">Horarios</a></li>
 		            <li><a href="${urlRoot}noticias/index">Noticias</a></li>
 		            <li><a href="${urlRoot}banners/index">Banner</a></li>             	           
 		            <li><a href="${urlRoot}admin/logout">Salir</a></li>
