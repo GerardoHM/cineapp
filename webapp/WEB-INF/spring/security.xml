@@ -18,7 +18,13 @@
 				<user name="marisol" password="{noop}mari123" authorities="GERENTE" />
 			</user-service>
 			-->
-			<jdbc-user-service data-source-ref="dataSource"/>
+			<!-- Autenticación desde una base de datos por defecto
+			<jdbc-user-service data-source-ref="dataSource" />
+			-->
+			<!-- Autenticación desde una base de datos personalizada -->
+			<jdbc-user-service data-source-ref="dataSource" 
+				users-by-username-query="select cuenta, contraseña, activo from usuarios where cuenta = ?" 
+				authorities-by-username-query="select cuenta, perfil from perfiles where cuenta = ?"/>
 		</authentication-provider>
 	</authentication-manager>
 </b:beans>
